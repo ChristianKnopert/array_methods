@@ -18,17 +18,32 @@ const inventors = [
 // 1. Filter de lijst op uitvinders die geboren zijn in de 16e eeuw
 // Verwachte uitkomst:
 // [{ first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 }, { first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 }]
-
+let birthInventors = [];
+birthInventors = inventors.filter((inventor)=>{
+  if (inventor.year < 1600 && inventor.year > 1500){
+    return true;
+  }
+  return false
+});
+console.log(birthInventors);
 
 
 // 2. Maak een array met daarin alle geboortejaren van de uitvinders
 // Verwachte uitkomst: [1879, 1643, 1564, 1867, 1571, 1473, 1858, 1898, 1815, 1855, 1878, 1847];
 
+const birthdayInventors = inventors.map((inventor)=>{
+  return inventor.year;
+})
 
+console.log(birthdayInventors);
 
 // 3. Maak een array met daarin alle volledige namen van de uitvinders (dus voor- en achternaam als één string)
 // Verwachte uitkomst: [ 'Albert Einstein', 'Isaac Newton', 'Galileo Galilei', 'Marie Curie', 'Johannes Kepler', 'Nicolaus Copernicus', 'Max Planck', 'Katherine Blodgett', 'Ada Lovelace', 'Sarah E. Goode', 'Lise Meitner', 'Thomas Edison']
 
+const fullNameInventors = inventors.map((inventor)=>{
+  return inventor.first + " " + inventor.last
+})
+console.log(fullNameInventors);
 
 
 // 4. Sorteer de uitvinders op geboortejaar, oplopend van oudste naar jongste uitvinder
@@ -47,6 +62,21 @@ const inventors = [
 //   { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
 //   { first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 }
 // ]
+
+const sortedInventors = inventors.sort((a, b)=>{
+  if (a.year > b.year) {
+    return 1;
+  }
+  // als a kleiner is dan b, geef een negatief getal terug
+  if (a.year <  b.year) {
+    return -1;
+  }
+
+  // als bovenstaande condities allebei niet waar zijn,
+  // zijn de waardes even groot
+  return 0;
+})
+console.log(sortedInventors);
 
 
 
@@ -67,8 +97,31 @@ const inventors = [
 // { first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 }
 // ]
 
+const oldestInventor = inventors.sort((a, b)=> {
+  if ((a.year - a.passed) > (b.year - b.passed)) {
+    return 1;
+  }
+  // als a kleiner is dan b, geef een negatief getal terug
+  if ((a.year - a.passed) <  (b.year - b.passed)) {
+    return -1;
+  }
+
+  // als bovenstaande condities allebei niet waar zijn,
+  // zijn de waardes even groot
+  return 0;
+})
+console.log(oldestInventor);
 
 
 
 // 6. Vind de gegevens over de uitvinder wiens achternaam 'Edison' is.
 // Verwachte uitkomst: { first: 'Thomas', last: 'Edison', year: 1847, passed: 1931 }
+
+const edisonsDetails = inventors.find((inventor)=>{
+  if (inventor.last === "Edison"){
+    return true
+  }
+  return false
+})
+
+console.log(edisonsDetails);
